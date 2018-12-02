@@ -1,0 +1,72 @@
+<div class="container container-main mt-5" style="padding:30px">
+  <h3 class="text-center">Add new shop or new food.</h3>
+  <form >
+    <div class="md-form">
+      <select [(ngModel)]="selected_to" name="select To"  class="form-control">
+        <option value='1'>new shop.</option>
+        <option value='2'>new food.</option>
+
+      </select>
+    </div>
+  </form>
+  <div class='mt-3' *ngIf="selected_to == 1">
+    <h3 class="text-center">Add new Shop</h3>
+    <form (ngSubmit)="addNewShop()">
+      <div class="md-form">
+        <label for="name">Name shop : </label>
+        <input class="form-control" placeholder="name shop..." type="text" [(ngModel)]="locationD.name_shop" name="name_shop" id="">
+      </div>
+      <div class="md-form">
+        <div class="text-center">
+          <img src="{{showImage}}" style="width:128px;height:128px;" alt="" srcset="">
+
+        </div>
+          <label for="img">Image shop : </label>
+          <input #imageShop (change)="processFile(imageShop)"  class="form-control" type="file"  id="">
+        </div>
+        <div class="md-form">
+            <label for="name"> Selected locations : </label>
+            <!-- <input type="text" name="" id="">
+             -->
+             <select class="form-control" name="locations" [(ngModel)]="locationD.id_location">
+               <option *ngFor="let loaction of locationTotal" value="{{ loaction.id_location }}"> {{loaction.name_location}} </option>
+             </select>
+          </div>
+          <div class="md-form">
+            <button  class="btn btn-primary btn-block" type="submit">Save</button>
+          </div>
+    </form>
+  </div>
+  <div  class='mt-3' *ngIf="selected_to == 2">
+    <h3 class="text-center">Add new Food</h3>
+    <form (ngSubmit)="addNewFood()">
+      <div class="md-form"><label for="name">Name Food</label>
+        <input type="text" name="name_food" [(ngModel)]="foodData.name_food" placeholder="name food...." class="form-control">
+      </div>
+      <div class="md-form"><label for="price">Price Food M</label>
+        <input type="text" name="price_food" [(ngModel)]="foodData.price_food_m" placeholder="price food..." class="form-control">
+      </div>
+      <div class="md-form"><label for="price">Price Food L</label>
+        <input type="text" name="price_food" [(ngModel)]="foodData.price_food_l" placeholder="price food..." class="form-control">
+      </div>
+      <div class="md-form">
+        <div class="text-center">
+        <img style="width:128px;height:128px;" src="{{showImage}}" alt="" srcset="">
+
+        </div>
+        <label for="Img">Img</label>
+        <input type="file"  class="form-control" name="img" #imgFood (change)="processFile(imgFood)" >
+      </div>
+      <div class="md-form">
+        <label for="selectedtype">Selected shop </label>
+        <select name="shopId"  class='form-control' [(ngModel)]="foodData.id_shop" id="">
+          <option *ngFor="let shop of shopTotal" value="{{shop.id}}">{{ shop.name_shop}}</option>
+        </select>
+
+      </div>
+      <div class="md-form mt-3">
+        <button class="btn btn-primary btn-block">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

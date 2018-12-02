@@ -1,0 +1,16 @@
+body{
+    background: rgb(246, 186, 74)
+}
+.btn-btnBk{
+
+    color:white;
+    background: rgb(246, 186, 74);
+
+}
+.nav-link {
+    color:black
+}
+.router-link-active{
+    color:rgb(246, 186, 74);
+    font-weight: bold
+}
