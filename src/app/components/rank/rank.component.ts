@@ -69,7 +69,7 @@ export class RankComponent implements OnInit {
       "series": [
         {
             "name": "Like of Shop",
-            "colorByPoint": true,
+
             "data": data
         }
       ]
