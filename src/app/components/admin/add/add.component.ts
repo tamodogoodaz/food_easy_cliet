@@ -1,33 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { UploadImage } from '../../../img-src';
-import { LocationsService } from '../../../service/location/locations.service';
-import { ShopService } from '../../../service/shop/shop.service';
-import { FoodService } from '../../../service/food/food.service';
+import { Component, OnInit } from "@angular/core"
+import { UploadImage } from "../../../img-src"
+import { LocationsService } from "../../../service/location/locations.service"
+import { ShopService } from "../../../service/shop/shop.service"
+import { FoodService } from "../../../service/food/food.service"
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: "app-add",
+  templateUrl: "./add.component.html",
+  styleUrls: ["./add.component.css"]
 })
 export class AddComponent implements OnInit {
   selected_to = 0
-  locationD ={
-    id_location : 0,
-    name_shop : "" ,
-    img_shop : ""
+  locationD = {
+    id_location: 0,
+    name_shop: "",
+    img_shop: ""
   }
   shopTotal = []
   foodData = {
-    id_shop : 0 ,
-    name_food : "" , 
-    price_food_m : 0,
-    price_food_l : 0 ,
-    img_food  : '',
+    id_shop: 0,
+    name_food: "",
+    price_food_m: 0,
+    price_food_l: 0,
+    img_food: ""
   }
   locationTotal = []
   selectedFile
-  showImage  = ""
-  constructor(private lo: LocationsService , private showS : ShopService , private foodS : FoodService) { }
+  showImage = ""
+  addDataSucc = false
+  constructor(
+    private lo: LocationsService,
+    private showS: ShopService,
+    private foodS: FoodService
+  ) {}
   processFile(imageInput: any) {
     console.log(imageInput)
     new UploadImage().processFile(imageInput).then(suc => {
@@ -51,11 +56,39 @@ export class AddComponent implements OnInit {
   }
   addNewShop() {
     // console.log(this.locationD)
-    this.showS.addNewShop(this.locationD , this.selectedFile.file).subscribe(data => console.log(data))
+    this.showS
+      .addNewShop(this.locationD, this.selectedFile.file)
+      .subscribe(data => {
+        this.showImage = ""
+
+        this.locationD = {
+          id_location: 0,
+          name_shop: "",
+          img_shop: ""
+        }
+        this.addDataSucc = true
+        setTimeout(() => {
+          this.addDataSucc = false
+        }, 5000)
+      })
   }
   addNewFood() {
-    // this.foodS
-    // console.log(this.foodData)
-    this.foodS.addNewFood(this.foodData , this.selectedFile.file).subscribe(data => console.log(data))
+    this.foodS
+      .addNewFood(this.foodData, this.selectedFile.file)
+      .subscribe(data => {
+        this.foodData = {
+          id_shop: 0,
+          name_food: "",
+          price_food_m: 0,
+          price_food_l: 0,
+          img_food: ""
+        }
+        this.showImage = ""
+
+        this.addDataSucc = true
+        setTimeout(() => {
+          this.addDataSucc = false
+        }, 5000)
+      })
   }
 }
