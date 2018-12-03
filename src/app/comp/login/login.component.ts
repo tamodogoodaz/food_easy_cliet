@@ -1,23 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../service/login.service';
+import { Component, OnInit } from "@angular/core"
+import { LoginService } from "../../service/login.service"
+import { Router } from "@angular/router"
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   login = {
-    username: "" , 
-    password : ""
+    username: "",
+    password: ""
   }
-  constructor(private _login: LoginService) { }
+  wrongPassword: boolean = false
+  constructor(private _login: LoginService, private _router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   loginSubmit() {
-    // console.log(this.login)
-    this._login.loginUser(this.login).subscribe(data => console.log(data))
-  }
+    this._login.loginUser(this.login).subscribe(data => {
+      if (data.length) {
+        this.wrongPassword = false
 
+        this._login.setAdminData(data[0])
+        this._router.navigate(["/admin/list"])
+        this.wrongPassword = false
+      }
+      this.wrongPassword = true
+    })
+  }
 }

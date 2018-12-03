@@ -1,3 +1,65 @@
-<p>
-  delte works!
-</p>
+<div class="container container-main mt-5" style="padding: 30px;">
+  <div class="col-12 col-md-8" style="margin:auto">
+    <label for="seleted">Seleted Locations: </label>
+    <select
+      name="location"
+      (change)="changeLocation(seleted_location)"
+      #seleted_location
+      class="form-control"
+    >
+      <option
+        *ngFor="let location of locationData"
+        value="{{location.id_location}}"
+        >{{ location.name_location }}</option
+      >
+    </select>
+  </div>
+  <div class="col-12 col-md-8 table_table_500px mt-5" style="margin:auto">
+    <table class="table table-striped">
+      <thead>
+        <th>ID Shop</th>
+        <th>Name Shop</th>
+        <!-- <th>Name Shop</th> -->
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shop of shopData">
+          <td>{{ shop.id }}</td>
+          <td>
+            <a (click)="showFood(shop)"> {{ shop.name_shop }} </a>
+          </td>
+          <td>
+            <a (click)="editeShop(shop)"> <i class="fas fa-edit"></i> </a>
+          </td>
+          <td>
+            <a (click)="deleteShop(shop)"> <i class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12 col-md-8 table_table_500px mt-5" style="margin:auto">
+    <table class="table table-striped">
+      <thead>
+        <th>ID Food</th>
+        <th>Name Food</th>
+
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let food of foodData">
+          <td>{{ food.id_food }}</td>
+          <td>{{ food.name_food }}</td>
+          <td>
+            <a (click)="editeFood(food)"> <i class="fas fa-edit"></i> </a>
+          </td>
+          <td>
+            <a (click)="deleteFood(food)"> <i class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
