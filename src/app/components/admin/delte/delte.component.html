@@ -20,20 +20,18 @@
         <th>ID Shop</th>
         <th>Name Shop</th>
         <!-- <th>Name Shop</th> -->
-        <th>Edit</th>
+
         <th>Delete</th>
       </thead>
       <tbody>
         <tr *ngFor="let shop of shopData">
           <td>{{ shop.id }}</td>
           <td>
-            <a (click)="showFood(shop)"> {{ shop.name_shop }} </a>
+            <a class="name_shop" (click)="showFood(shop)"> {{ shop.name_shop }} </a>
           </td>
+         
           <td>
-            <a (click)="editeShop(shop)"> <i class="fas fa-edit"></i> </a>
-          </td>
-          <td>
-            <a (click)="deleteShop(shop)"> <i class="fas fa-trash-alt"></i></a>
+            <a class="deleteTools" (click)="deleteShop(shop)"> <i class="fas fa-trash-alt"></i></a>
           </td>
         </tr>
       </tbody>
@@ -45,18 +43,16 @@
         <th>ID Food</th>
         <th>Name Food</th>
 
-        <th>Edit</th>
+
         <th>Delete</th>
       </thead>
       <tbody>
         <tr *ngFor="let food of foodData">
           <td>{{ food.id_food }}</td>
           <td>{{ food.name_food }}</td>
+         
           <td>
-            <a (click)="editeFood(food)"> <i class="fas fa-edit"></i> </a>
-          </td>
-          <td>
-            <a (click)="deleteFood(food)"> <i class="fas fa-trash-alt"></i></a>
+            <a class="deleteTools" (click)="deleteFood(food)"> <i class="fas fa-trash-alt"></i></a>
           </td>
         </tr>
       </tbody>

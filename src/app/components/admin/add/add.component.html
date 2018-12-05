@@ -1,6 +1,6 @@
 <div class="container container-main mt-5" style="padding:30px">
   <h3 class="text-center p-3" style="color:rgb(173, 122, 27);">
-    Add new shop or new food.
+    เพิ่มร้านค้า หรือ รายการอาหารใหม่
   </h3>
   <h3 *ngIf="addDataSucc" class="text-success text-center p-3 mt-3 mb-3">
     Add data is success.
@@ -8,18 +8,18 @@
 
   <div class="col-12 col-md-6 paaaa" style="margin:auto">
     <div class="md-form">
-      <label for="seleted"> You can selete location</label>
+      <label for="seleted"> เลือกรายการที่ต้องการเพิ่ม </label>
       <select [(ngModel)]="selected_to" name="select To" class="form-control">
-        <option value="1">new shop.</option>
-        <option value="2">new food.</option>
+        <option value="1">เพิ่มร้านค้า</option>
+        <option value="2">เพิ่มอาหาร</option>
       </select>
     </div>
 
     <div class="mt-3" *ngIf="selected_to == 1">
-      <h3 class="text-center">Add new Shop</h3>
+      <h3 class="text-center">เพิ่มร้านค้าใหม่</h3>
       <form (ngSubmit)="addNewShop()">
         <div class="md-form">
-          <label for="name">Name shop : </label>
+          <label for="name">ชื่อร้านค้า : </label>
           <input
             class="form-control"
             placeholder="name shop..."
@@ -36,7 +36,7 @@
               style="width:128px;height:128px;margin-top:20px;"
             />
           </div>
-          <label for="img">Image shop : </label>
+          <label for="img">เพิ่มรูปภาพร้าน : </label>
           <input
             #imageShop
             (change)="processFile(imageShop)"
@@ -46,7 +46,7 @@
           />
         </div>
         <div class="md-form">
-          <label for="name"> Selected locations : </label>
+          <label for="name"> เลือกบริเวณ : </label>
           <!-- <input type="text" name="" id=""> -->
           <select
             class="form-control"
@@ -69,10 +69,10 @@
       </form>
     </div>
     <div class="mt-3" *ngIf="selected_to == 2">
-      <h3 class="text-center">Add new Food</h3>
+      <h3 class="text-center">เพิ่มรายการอาหารใหม่</h3>
       <form (ngSubmit)="addNewFood()">
         <div class="md-form">
-          <label for="name">Name Food</label>
+          <label for="name">ชื่ออาหาร</label>
           <input
             type="text"
             name="name_food"
@@ -82,7 +82,7 @@
           />
         </div>
         <div class="md-form">
-          <label for="price">Price Food M</label>
+          <label for="price">ราคาอาหาร ขนาดปกติ</label>
           <input
             type="text"
             name="price_food"
@@ -92,7 +92,7 @@
           />
         </div>
         <div class="md-form">
-          <label for="price">Price Food L</label>
+          <label for="price">ราคาอาหาร ขนาดพิเศษ</label>
           <input
             type="text"
             name="price_food"
@@ -108,7 +108,7 @@
               src="{{showImage}}"
             />
           </div>
-          <label for="Img">Img of food</label>
+          <label for="Img">รูปอาหาร</label>
           <input
             type="file"
             class="form-control"
@@ -118,7 +118,7 @@
           />
         </div>
         <div class="md-form">
-          <label for="selectedtype">Selected shop </label>
+          <label for="selectedtype">เลือกร้านค้าที่ต้องการ</label>
           <select
             name="shopId"
             class="form-control"

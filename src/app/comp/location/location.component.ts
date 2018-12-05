@@ -13,26 +13,33 @@ export class LocationComponent implements OnInit {
   shopData : Array<any> = []
   foodsData : Array<any> = []
   onClickTo = []
+  showId
+  hh = []
   constructor(private locationS :LocationsService , private shopS :ShopService , private foodS : FoodService) { }
 
   ngOnInit() {
     // this.onClickTo = []
     this.locationS.getListOfLocation().subscribe(data => this.locationData = data)
   }
-  clickTOs(data) {
-    this.shopS.getListOfShop(data.value).subscribe(data => {
-      this.shopData = data.map(da => {
+  clickTOs(inputData) {
+    this.shopS.getListOfShop(inputData.value).subscribe(shop => {
+     
+      this.shopData = shop.map(async (da , id) => {
+        const ggg = await this.foodS.getListOfFood(da.id).toPromise()
+        const gg = ggg.reduce((sum , d) => sum += d.food_like , 0)
+
         return {
           name_shop : da.name_shop ,
           id : da.id ,
           img_shop : `http://localhost:3000/public/${da.img_shop}` ,
-          like : da.shop_like || 0
+          like :gg[id]
         }
       })
     })
     // console.log(data.value)
   }
   shopSrech(data) {
+    this.showId = data.id
     // console.log(data)
     this.foodS.getListOfFood(data.id).subscribe(data => {
       // this.onClickTo = []
@@ -42,7 +49,8 @@ export class LocationComponent implements OnInit {
           name_food : data.name_food ,
           img_food :  `http://localhost:3000/public/${data.img_food}`,
           price_food_m : data.price_food_m , 
-          price_food_l : data.price_food_l 
+          price_food_l : data.price_food_l ,
+          food_like : data.food_like
 
         }
       }) 
@@ -62,5 +70,27 @@ export class LocationComponent implements OnInit {
         }
       })
     })
+  }
+  foodLike(food) {
+    const id = food.id 
+
+    this.foodS.updateFood(id).subscribe(data => {
+      this.foodS.getListOfFood(this.showId).subscribe(data => {
+        const gg = data.reduce((sum,data) => sum += data.food_like , 0)
+        console.log(gg)
+        this.foodsData = data.map(data => {
+          return {
+            id : data.id_food ,
+            name_food : data.name_food ,
+            img_food :  `http://localhost:3000/public/${data.img_food}`,
+            price_food_m : data.price_food_m , 
+            price_food_l : data.price_food_l ,
+            food_like : data.food_like
+  
+          }
+        }) 
+       
+      })
+    }, err => alert(JSON.stringify(err)))
   }
 }

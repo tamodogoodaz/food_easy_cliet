@@ -16,8 +16,12 @@
         </li>
        
       </ul>
-      <div class="form-inline my-2 my-lg-0">
+      <div *ngIf="!adminInput" class="form-inline my-2 my-lg-0">
         <a class = "nav-link" [routerLink]="['/core/login']" routerLinkActive="router-link-active"  >Admin Singin</a>
+      </div>
+      <div *ngIf="adminInput" class="form-inline my-2 my-lg-0">
+        <a class = "nav-link" [routerLink]="['/admin/list']" routerLinkActive="router-link-active"  >{{adminDataName}}</a>
+        
       </div>
     </div>
   </nav>

@@ -32,11 +32,13 @@ export class DelteComponent implements OnInit {
   editeShop(shop) {}
   deleteShop(shop) {
     console.log(shop)
+   if(confirm("ต้องการลบข้อมูลอาหารนี้หรือไม่ ?")) {
     this.shopS.deleteShop(shop.id).subscribe(data => {
       alert(JSON.stringify(data))
       this.shopData.splice(this.shopData.indexOf(shop), 1)
       this.foodData = []
     })
+   }
   }
   showFood(shop) {
     this.foodS.getListOfFood(shop.id).subscribe(data => {
@@ -44,9 +46,11 @@ export class DelteComponent implements OnInit {
     })
   }
   deleteFood(food) {
-    this.foodS.deleteFood(food.id_food).subscribe(data => {
-      this.foodData.splice(this.foodData.indexOf(food), 1)
-      alert(JSON.stringify(data))
-    })
+    if(confirm("ต้องการลบข้อมูลอาหารนี้หรือไม่ ?")) {
+      this.foodS.deleteFood(food.id_food).subscribe(data => {
+        this.foodData.splice(this.foodData.indexOf(food), 1)
+        alert(JSON.stringify(data))
+      })
+    }
   }
 }

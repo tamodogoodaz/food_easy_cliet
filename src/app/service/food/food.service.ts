@@ -20,4 +20,7 @@ export class FoodService {
   deleteFood(id): Observable<any> {
     return this.http.delete(`${this.url}/api/deleteFood/${id}`)
   }
+  updateFood(id): Observable<any> {
+    return this.http.get(`${this.url}/api/likeFood/${id}`)
+  }
 }

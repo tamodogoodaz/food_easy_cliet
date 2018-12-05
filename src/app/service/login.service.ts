@@ -19,7 +19,10 @@ export class LoginService {
   }
   getAdminData() {
     return this.checkAdmin
-      ? JSON.stringify(localStorage.getItem("admin"))
+      ? JSON.parse(localStorage.getItem("admin"))
       : "Not login be admin."
+  }
+  logoutAdmin() {
+    return localStorage.removeItem("admin")
   }
 }

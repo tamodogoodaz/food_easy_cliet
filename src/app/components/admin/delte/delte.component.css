@@ -8,3 +8,20 @@
   height: 200px;
   overflow: auto;
 }
+.name_shop{
+  transition: all ease-in-out .4s;
+  cursor: pointer;
+}
+.name_shop:hover {
+  color:rgb(0, 119, 255);
+  font-weight: bold;
+}
+a.deleteTools i{
+  cursor: pointer;
+  transition: all ease-in-out .4s;
+  /* color: red; */
+
+}
+a.deleteTools i:hover{
+  color: red;
+}

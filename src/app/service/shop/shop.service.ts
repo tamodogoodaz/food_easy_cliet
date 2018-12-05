@@ -26,4 +26,5 @@ export class ShopService {
   deleteShop(id): Observable<any> {
     return this.http.delete(`${this.url}/api/deleteShop/${id}`)
   }
+  
 }
